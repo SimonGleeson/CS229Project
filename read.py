@@ -18,9 +18,9 @@ for i in range(1, 22):
 print(‘Charlie was here’)
 
 
-with open(path + '/GEFCOM/Load_history.csv', 'rb') as lcsv:
+with open(path + '/GEFCOM/Load_history.csv', 'rt', encoding='ascii') as lcsv:
     loadreader = csv.reader(lcsv)
-    for index, row in enumerate(loadreader):
+    for index, row in list(enumerate(loadreader)):
         if index == 0:
             continue
         for i, col in enumerate(row):
@@ -45,9 +45,9 @@ for i in range(1, 12):
     #keys for the time (datetime objects)
     temps['time_{}'.format(i)] = []
 
-with open(path + '/GEFCOM/temperature_history.csv', 'rb') as tcsv:
+with open(path + '/GEFCOM/temperature_history.csv', 'rt') as tcsv:
     tempreader = csv.reader(tcsv)
-    for index, row in enumerate(tempreader):
+    for index, row in list(enumerate(tempreader)):
         #skip first row
         if index == 0:
             continue
