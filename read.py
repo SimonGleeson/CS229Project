@@ -4,7 +4,7 @@ import numpy as np
 import os
 from datetime import datetime
 import matplotlib.pyplot as plt
-
+#james was here :)
 path = os.getcwd()
 
 #create a dict that stores the times and loads of each zone
