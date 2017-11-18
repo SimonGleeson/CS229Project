@@ -44,7 +44,7 @@ for i in range(1, 20):
     loads['zone_{}'.format(i)] = []
 for i in range(1, 12):
     loads['weather_{}'.format(i)] = []
-
+loads['weekday'] = []
 
 with open(path + '/GEFCOM/Load_history.csv', 'rt', encoding='ascii') as lcsv:
     loadreader = csv.reader(lcsv)
@@ -65,6 +65,11 @@ with open(path + '/GEFCOM/Load_history.csv', 'rt', encoding='ascii') as lcsv:
                 time = datetime(year, month, day, hour) 
                 loads['time'].append(time)
                 loads['load'].append(load)
+                if time.weekday() < 5:
+                    loads['weekday'].append(1)
+                else:
+                    loads['weekday'].append(0)
+
                 for j in range(1, 20):
                     if j == int(row[0]):
                         loads['zone_{}'.format(j)].append(1)
