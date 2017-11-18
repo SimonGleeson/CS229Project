@@ -15,6 +15,8 @@ for i in range(1, 22):
     #keys for the time (datetime objects)
     loads['time_{}'.format(i)] = []
 
+print(‘Charlie was here’)
+
 
 with open(path + '/GEFCOM/Load_history.csv', 'rb') as lcsv:
     loadreader = csv.reader(lcsv)
