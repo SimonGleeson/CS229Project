@@ -15,8 +15,6 @@ for i in range(1, 22):
     #keys for the time (datetime objects)
     loads['time_{}'.format(i)] = []
 
-print(‘Charlie was here’)
-
 
 with open(path + '/GEFCOM/Load_history.csv', 'rt', encoding='ascii') as lcsv:
     loadreader = csv.reader(lcsv)
@@ -82,6 +80,11 @@ for i in range(1, 12):
             j += 1
     temps[temp] = tempList
 
+
+
+
+
+"""
 #colors
 colors = ['aqua', 'azure', 'coral', 'lavender', 'lightgreen', 'grey', 'orangered', 'wheat', 'purple', 'tomato', 'sienna']
 
@@ -99,6 +102,7 @@ for i in range(1, 12):
 
 #Plot a day in winter for each zone - Jan 17
 for i in range(1, 22):
-    plt.plot(loads['time_{}'.format(i)][384:408], loads['load_{}'.format(i)][384:408], label = Zone = {}.format(i))
+    plt.plot(loads['time_{}'.format(i)][384:408], loads['load_{}'.format(i)][384:408], label = 'Zone{}.'format(i))
     plt.legend()
     plt.savefig('plots/Winter_jan_17', bbox_inches='tight')
+"""
