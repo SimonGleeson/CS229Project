@@ -78,12 +78,13 @@ with open(path + '/GEFCOM/Load_history.csv', 'rt', encoding='ascii') as lcsv:
 mindate = datetime(2004, 1, 1)
 with open(path + '/GEFCOM/mod_data.csv', 'w') as csvfile:
     csvwriter = csv.writer(csvfile, delimiter=',')
-    csvwriter.writerow(['id','zone','month','day','totDay','hour', \
+    csvwriter.writerow(['id','zone','year','month','day','totDay','hour', \
             'weekday','w1', 'w2','w3','w4','w5','w6','w7',\
             'w8','w9','w10','w11','load'])
     for i in range(len(loads['zone'])):
         output = [str(i), str(loads['zone'][i])]
         date = loads['time'][i]
+        output.append(str(date.year))
         output.append(str(date.month))
         output.append(str(date.day))
         output.append(str((date - mindate).days))
