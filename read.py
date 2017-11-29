@@ -16,9 +16,9 @@ for i in range(1, 22):
     loads['time_{}'.format(i)] = []
 
 
-with open(path + '/GEFCOM/Load_history.csv', 'rb') as lcsv:
+with open(path + '/GEFCOM/Load_history.csv', 'rt', encoding='ascii') as lcsv:
     loadreader = csv.reader(lcsv)
-    for index, row in enumerate(loadreader):
+    for index, row in list(enumerate(loadreader)):
         if index == 0:
             continue
         for i, col in enumerate(row):
@@ -43,9 +43,9 @@ for i in range(1, 12):
     #keys for the time (datetime objects)
     temps['time_{}'.format(i)] = []
 
-with open(path + '/GEFCOM/temperature_history.csv', 'rb') as tcsv:
+with open(path + '/GEFCOM/temperature_history.csv', 'rt') as tcsv:
     tempreader = csv.reader(tcsv)
-    for index, row in enumerate(tempreader):
+    for index, row in list(enumerate(tempreader)):
         #skip first row
         if index == 0:
             continue
@@ -80,23 +80,28 @@ for i in range(1, 12):
             j += 1
     temps[temp] = tempList
 
-#colors
+
+
+
+
 colors = ['aqua', 'azure', 'coral', 'lavender', 'lightgreen', 'grey', 'orangered', 'wheat', 'purple', 'tomato', 'sienna']
 
 ###Generate some exploratory plots
-for i in range(1, 12):
+for i in range(7, 8):
     temp = 'temp_{}'.format(i)
     load = 'load_{}'.format(i)
-    plt.scatter(temps[temp], loads[load], c='xkcd:{}'.format(colors[i-1]))
-    plt.title('Temperature versus Load for zone {}'.format(i))
-    plt.xlabel('Temperature (fahrenheit)')
-    plt.ylabel('Load (kWh)?')
+    for k in range(len(loads[load])):
+        loads[load][k] /= 1000
+    plt.scatter(temps[temp], loads[load], c='xkcd:{}'.format(colors[i-1]), alpha = 0.1)
+    #plt.title('Temperature versus Load for zone {}'.format(i))
+    plt.xlabel('Temperature (f)')
+    plt.ylabel('Load (MW)')
     plt.savefig('plots/tempvsload{}'.format(i), bbox_inches='tight')
     plt.clf()
 
 
 #Plot a day in winter for each zone - Jan 17
 for i in range(1, 22):
-    plt.plot(loads['time_{}'.format(i)][384:408], loads['load_{}'.format(i)][384:408], label = Zone = {}.format(i))
+    plt.plot(loads['time_{}'.format(i)][384:408], loads['load_{}'.format(i)][384:408], label = 'Zone{}'.format(i))
     plt.legend()
     plt.savefig('plots/Winter_jan_17', bbox_inches='tight')
