@@ -133,27 +133,3 @@ with open(path + '/GEFCOM/Load_solution.csv', 'rt', encoding='ascii') as lcsv:
                 weather = temps[time]
                 for index, val in list(enumerate(weather, 1)):
                     loads['weather_{}'.format(index)].append(val)
-            
-            
-"""
-#Create total load
-totalLoad = []
-for i in range(len(loads['load_1'])):
-    totalLoad.append(sum(loads['load_{}'.format(j)][i] for j in range(1, 21)))
-"""
-
-"""
-j = 0
-tempList = []
-for k in range(len(temps['time'])):
-    if loads['time'][j] == temps['time'][k]:
-        tempList.append(temps['temp'][k])
-        j += 1
-temps['temp'] = tempList
-
-
-"""
-"""
-#colors
-colors = ['aqua', 'azure', 'coral', 'lavender', 'lightgreen', 'grey', 'orangered', 'wheat', 'purple', 'tomato', 'sienna']
-"""
